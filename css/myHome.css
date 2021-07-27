@@ -1,0 +1,144 @@
+@charset "utf-8";
+
+html{
+    -webkit-text-size-adjust: 100%;
+  }
+
+body{
+    height: 1200px;
+    color: #59220d;
+    line-height: 1.5;
+    font-size: 14px;
+    font-family: sans-serif;
+    text-align: center;
+    
+  }
+
+
+html, body, div,header{
+    margin:0;
+    padding:0;
+}
+
+html, body, div,header
+{
+    display:block;
+}
+/*header
+--------------------*/
+.header{
+    position: relative;
+    height: calc(80vh - 70px);
+    background: url(../img/github.jpg)
+    center center no-repeat;
+    background-size: cover;
+    }
+
+    /* @media screen and (min-width: 550px){
+        .img {
+            background-size: contain; 
+        }   */
+
+/*img*/
+img{
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+/*ul*/
+ul,ol{
+  list-style-type: none;
+}
+
+/*container*/
+.container {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+
+
+/*back*/
+
+
+.backImg{
+    position: relative;
+    height: calc(80vh - 70px);
+    background: url(../img/githubBacki.jpg)
+    center center no-repeat;
+    background-size: cover;
+    }
+
+
+
+
+
+
+
+/*global navigation*/
+
+.gnav{
+    background: #d8c7a0;
+  }
+  
+  .gnav ul {
+    display: flex; /*水平並列*/
+  }
+  .gnav li {
+    width: 25%;
+  }
+  .gnav a {
+    display: block;
+    padding: 15px 0;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Cardo', serif ;
+    font-style: italic;
+  }
+  .gnav a:hover {
+    background: #ecdfc2;
+  }
+
+
+
+
+
+/*top*/
+.top{
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+  }
+  .top a {
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+  }
+  .top a:hover {
+    background: rgba(255,255,255,0.8);
+    color: #59220d;
+  }
+  .top a::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    border-top: 1px solid #59220d;
+    border-right: 1px solid #59220d;
+    transform: rotate(-45deg);
+  }
