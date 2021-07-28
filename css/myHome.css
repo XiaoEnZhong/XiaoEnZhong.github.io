@@ -29,7 +29,7 @@ html, body, div,header
 .header{
     position: relative;
     height: calc(80vh - 70px);
-    background: url(../img/github.jpg)
+    background: url(../img/githubBacki.jpg)
     center center no-repeat;
     background-size: cover;
     }
@@ -63,7 +63,7 @@ ul,ol{
 
 /*back*/
 
-
+/*
 .backImg{
     position: relative;
     height: calc(80vh - 70px);
@@ -71,7 +71,7 @@ ul,ol{
     center center no-repeat;
     background-size: cover;
     }
-
+*/
 
 
 
