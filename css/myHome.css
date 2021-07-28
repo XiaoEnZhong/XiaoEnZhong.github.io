@@ -34,14 +34,15 @@ html, body, div,header
     background-size: cover;
     }
 
-.header-own{
+.headerOwn
+{
 font-size: 150px;
 }
 
 
 @media screen and (min-width: 550px)
 {
-        .header-own 
+        .headerOwn 
         {
            font-size: 150px;
         }
