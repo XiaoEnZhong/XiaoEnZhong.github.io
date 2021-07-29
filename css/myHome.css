@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 html{
-    -webkit-text-size-adjust: 100%;
+  font-size: 14px;
   }
 
 body{
@@ -26,52 +26,101 @@ html, body, div,header
 }
 /*header
 --------------------*/
-.header{
+/* .header{
     position: relative;
-    height: calc(80vh - 70px);
-    background: url(../img/githubBacki.jpg)
+    height: calc(100vh - 70px); */
+    /* background: url(../img/796x418.png)
     center center no-repeat;
-    background-size: cover;
-    }
+    background-size: cover;  */
+ /*   } */
 
-.headerOwn
-{
-font-size: 150px;
+/*a*/
+a {
+  color: #59220d;
+  transition: 0.5s;
+}
+a:hover {
+  color: #d53e04;
+}
+a:hover img {
+  opacity: 0.7;
 }
 
+.headerMsg{
+  font-size: 150px;
+}
 
-@media screen and (min-width: 550px)
-{
-        .headerOwn 
-        {
-           font-size: 150px;
+          @media screen and (max-width: 300px){
+          .headerMsg {
+             font-size: 1500px;
+          }
+
+          a {
+            font-size: 200px;
+          }
+
         }
-}
+
 
 /*img*/
-img{
+/* img{
   border: 0;
   max-width: 100%;
   height: auto;
-}
+} */
 /*ul*/
 ul,ol{
   list-style-type: none;
 }
 
+/*head*/
+
+
+@media screen and (min-width: 1100px) {
+  .nav ul {
+    display: flex; /*水平並列*/
+  }
+  .nav li {
+    width: 25%;
+  }
+
+  .nav a {
+    display: block;
+    padding: 15px 0;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Cardo', serif ;
+    font-style: italic;
+  }
+  .nav a:hover {
+    background: #ecdfc2;
+  }
+}
+
+
 /*container*/
-.container {
+/* .container {
   max-width: 940px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-}
+} */
 
 
 
 
 /*back*/
 
+
+.backImg{
+    position: relative;
+    height: calc(80vh - 70px);
+    background: url(../img/githubBacki.jpg)
+    center center no-repeat;
+    background-size: cover;
+    }
 
 
 
@@ -146,8 +195,25 @@ ul,ol{
 
 
 
+
+
+  /* html{
+    font-size: 14px;
+  }
+  .rwdtxt {
+    font-size: 1.2rem;
+    color:green;
+  }
+  @media (min-width: 600px) and (max-width: 1200px) {
+    .rwdtxt {
+     font-size: calc(1.2rem + (1.3-1.2) * ((100vw - 600px) / (1200 - 600)));
+    color:blue;
+    }
+  }*/
+
+
   @media screen and (max-width:1100px){
-   
+
 header nav ul{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%}
 header nav ul li{padding:1rem 0;border-bottom:2px solid gray;font-size:2rem}
 
