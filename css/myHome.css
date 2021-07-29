@@ -143,3 +143,12 @@ ul,ol{
     border-right: 1px solid #59220d;
     transform: rotate(-45deg);
   }
+
+
+
+  @media screen and (max-width:1100px){
+   
+header nav ul{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%}
+header nav ul li{padding:1rem 0;border-bottom:2px solid gray;font-size:2rem}
+
+}
