@@ -26,37 +26,7 @@ const server = http.createServer((request, response) => {
     const method = request.method;
     let url = request.url;
 
-    if (method === "GET") {
-        const requestUrl = new URL(url, `http://${ip}:${port}`);
-        //console.log(requestUrl);
-        //console.log(requestUrl.searchParams.get("lang"));
-        url = requestUrl.pathname;
-        const lang = requestUrl.searchParams.get("lang");
-        let selector;
-
-        if (lang === null || lang === "en") {
-            selector = "";
-        } else if (lang === "zh") {
-            selector = "-zh";
-        } else {
-            selector = "";
-        }
-
-        if (url === "/") {
-            sendResponse(`index${selector}.html`, 200, response);
-        } else if (url === "/about.html") {
-            sendResponse(`about${selector}.html`, 200, response);
-        } else if (url === "/login.html") {
-            sendResponse(`login${selector}.html`, 200, response);
-        } else if (url === "/login-success.html") {
-            sendResponse(`login-success${selector}.html`, 200, response);
-        } else if (url === "/login-fail.html") {
-            sendResponse(`login-fail${selector}.html`, 200, response);
-        }
-     else {
-        sendResponse(`404${selector}.html`, 404, response);
-    }
-} else {
+    
     if (url === "/process-login") {
         let body = [];
 
