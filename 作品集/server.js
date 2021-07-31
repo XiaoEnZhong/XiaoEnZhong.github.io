@@ -26,6 +26,37 @@ const server = http.createServer((request, response) => {
     const method = request.method;
     let url = request.url;
 
+    if (method === "GET") {
+        const requestUrl = new URL(url, `https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html}`);
+        //console.log(requestUrl);
+        //console.log(requestUrl.searchParams.get("lang"));
+        url = requestUrl.pathname;
+        const lang = requestUrl.searchParams.get("lang");
+        let selector;
+
+        if (lang === null || lang === "en") {
+            selector = "";
+        } else if (lang === "zh") {
+            selector = "-zh";
+        } else {
+            selector = "";
+        }
+
+        if (url === "/") {
+            sendResponse(`index${selector}.html`, 200, response);
+        } else if (url === "/about.html") {
+            sendResponse(`about${selector}.html`, 200, response);
+        } else if (url === "/login.html") {
+            sendResponse(`login${selector}.html`, 200, response);
+        } else if (url === "/login-success.html") {
+            sendResponse(`login-success${selector}.html`, 200, response);
+        } else if (url === "/login-fail.html") {
+            sendResponse(`login-fail${selector}.html`, 200, response);
+        }
+     else {
+        sendResponse(`404${selector}.html`, 404, response);
+    }
+} else {
     
     if (url === "/process-login") {
         let body = [];
@@ -53,6 +84,6 @@ const server = http.createServer((request, response) => {
 });
 //1.端口(port) 2.ip地址 3.回調函數(callback)
 
-//server.listen(port, ip, () => {
-//  console.log(`server is running at http://${ip}:${port}`);
-//});
+    server.listen(port, ip, () => {
+  console.log(`server is running at https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html`);
+});
