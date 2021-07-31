@@ -1,6 +1,6 @@
 const http = require("http");
 const fs = require("fs");
-const qs = require("querstring");
+const qs = require("querystring");
 
 const port = 3000;
 const ip = "127.0.0.1";
@@ -69,7 +69,7 @@ const server = http.createServer((request, response) => {
             body = qs.parse(body);
             console.log(body);
 
-            if (body.username === "enzhong" && body.password === "enzhong") {
+            if (body.username === "enzhong" && body.password === "enzhong123") {
                 response.statusCode = 301;
                 response.setHeader("Location","/login-success.html");
             } else {
