@@ -2,8 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const qs = require("querystring");
 
-const port = 3000;
-const ip = "127.0.0.1";
+
 
 const sendResponse = (filename, statusCode, response) => {
     fs.readFile(`./login/${filename}` , (error, data) => {
@@ -84,6 +83,6 @@ const server = http.createServer((request, response) => {
 });
 //1.端口(port) 2.ip地址 3.回調函數(callback)
 
-server.listen(port, ip, () => {
-  console.log(`server is running at http://${ip}:${port}`);
-});
+//server.listen(port, ip, () => {
+//  console.log(`server is running at http://${ip}:${port}`);
+//});
