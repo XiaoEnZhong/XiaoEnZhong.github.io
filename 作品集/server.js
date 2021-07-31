@@ -6,7 +6,7 @@ const port = 3000;
 const ip = "127.0.0.1";
 
 const sendResponse = (filename, statusCode, response) => {
-    fs.readFile(`./html/${filename}` , (error, data) => {
+    fs.readFile(`./login/${filename}` , (error, data) => {
         if (error) {
             response.statusCode = 500;
             response.setHeader("Content-Type", "text/plain");
