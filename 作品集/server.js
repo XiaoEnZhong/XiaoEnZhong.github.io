@@ -2,10 +2,11 @@ const http = require("http");
 const fs = require("fs");
 const qs = require("querystring");
 
-
+const port = 3000;
+const ip = "127.0.0.1";
 
 const sendResponse = (filename, statusCode, response) => {
-    fs.readFile(`login/${filename}` , (error, data) => {
+    fs.readFile(`./html/${filename}` , (error, data) => {
         if (error) {
             response.statusCode = 500;
             response.setHeader("Content-Type", "text/plain");
@@ -22,12 +23,14 @@ const sendResponse = (filename, statusCode, response) => {
 //request = 請求object
 //response = 響應object
 const server = http.createServer((request, response) => {
-
+    //console.log(request.url, request.method);
     const method = request.method;
     let url = request.url;
 
     if (method === "GET") {
-        const requestUrl = new URL(url, `https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html}`);
+        const requestUrl = new URL(url, `http://${ip}:${port}`);
+        //console.log(requestUrl);
+        //console.log(requestUrl.searchParams.get("lang"));
         url = requestUrl.pathname;
         const lang = requestUrl.searchParams.get("lang");
         let selector;
@@ -55,14 +58,14 @@ const server = http.createServer((request, response) => {
         sendResponse(`404${selector}.html`, 404, response);
     }
 } else {
-    
     if (url === "/process-login") {
         let body = [];
 
-        request.on("data", (chunk) =>{
+        request.on("data", (chunk) => {
             body.push(chunk);
         } );
-        request.on("end", () =>{ 
+
+        request.on("end", () => { 
             body = Buffer.concat(body).toString();
             body = qs.parse(body);
             console.log(body);
@@ -80,4 +83,8 @@ const server = http.createServer((request, response) => {
 } 
   
 });
+//1.端口(port) 2.ip地址 3.回調函數(callback)
 
+ server.listen(port, ip, () => {
+   console.log(`server is running at http://${ip}:${port}`);
+ });
