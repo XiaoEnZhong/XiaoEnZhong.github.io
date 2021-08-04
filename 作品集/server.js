@@ -22,14 +22,12 @@ const sendResponse = (filename, statusCode, response) => {
 //request = 請求object
 //response = 響應object
 const server = http.createServer((request, response) => {
-    //console.log(request.url, request.method);
+
     const method = request.method;
     let url = request.url;
 
     if (method === "GET") {
-        const requestUrl = new URL(url, `login/login.html}`);
-        //console.log(requestUrl);
-        //console.log(requestUrl.searchParams.get("lang"));
+        const requestUrl = new URL(url, `https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html}`);
         url = requestUrl.pathname;
         const lang = requestUrl.searchParams.get("lang");
         let selector;
@@ -58,7 +56,7 @@ const server = http.createServer((request, response) => {
     }
 } else {
     
-    if (url === "/login") {
+    if (url === "/process-login") {
         let body = [];
 
         request.on("data", (chunk) =>{
