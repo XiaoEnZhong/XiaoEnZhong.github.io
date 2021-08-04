@@ -82,8 +82,4 @@ const server = http.createServer((request, response) => {
 } 
   
 });
-//1.端口(port) 2.ip地址 3.回調函數(callback)
 
-    server.listen(port, ip, () => {
-  console.log(`server is running at https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html`);
-});
