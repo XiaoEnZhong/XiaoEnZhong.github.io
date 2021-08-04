@@ -5,7 +5,7 @@ const qs = require("querystring");
 
 
 const sendResponse = (filename, statusCode, response) => {
-    fs.readFile(`./login/${filename}` , (error, data) => {
+    fs.readFile(`login/${filename}` , (error, data) => {
         if (error) {
             response.statusCode = 500;
             response.setHeader("Content-Type", "text/plain");
@@ -27,7 +27,7 @@ const server = http.createServer((request, response) => {
     let url = request.url;
 
     if (method === "GET") {
-        const requestUrl = new URL(url, `https://xiaoenzhong.github.io/%E4%BD%9C%E5%93%81%E9%9B%86/login/login.html}`);
+        const requestUrl = new URL(url, `login/login.html}`);
         //console.log(requestUrl);
         //console.log(requestUrl.searchParams.get("lang"));
         url = requestUrl.pathname;
