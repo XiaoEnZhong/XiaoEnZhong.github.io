@@ -28,7 +28,7 @@
                 </ul>
             </nav>
  
-
+            <div class="pp">JS小應用:點擊此處可更改其內容</div>
 
         </header>
 
@@ -53,6 +53,16 @@
         <footer>
             <p class="top"><a href="#header">TOP</a></p>
         </footer>
+        
+            <script>
+      const para = document.querySelector('.pp');
 
+      para.addEventListener('click', updateName);
+
+      function updateName() {
+        let name = prompt('請輸入想要顯示的新內容');
+        para.textContent = name;
+      }
+    </script>
     </body>
 </html>
