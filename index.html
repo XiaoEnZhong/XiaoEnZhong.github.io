@@ -8,13 +8,49 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
         <link rel="stylesheet"  href="css/myHome.css" media="all">
         <script src="js/myHome.js"></script>
+        
+        
+        <script type="text/javascript" src="jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery/jQueryRotate.2.2.js"></script>
+        <script type="text/javascript">
+	$(document).ready(function () {
+		$("#images").rotate(45);
+		var value = 0
+		$("#images1").rotate({ 
+		   bind: 
+		     { 
+		        mouseover: function(){
+		            value +=90;
+		            $(this).rotate({ animateTo:value})
+		        }
+		     } 
+		});
+		$('#button').click(function(){
+		   $("#images1").rotate({animateTo:parseInt($('#angel').val())});
+		});
+		function rotation (){
+		   $("#images2").rotate({
+	 		  angle:0, 
+		      animateTo:360, 
+		      callback: rotation,
+		      easing: function (x,t,b,c,d){
+		          return c*(t/d)+b;
+		      }
+		   });
+		}
+		rotation();	
+	});	
+        </script>
+        
+        
+        
     </head>
 
     <body>
         <header id="header" class="header">
             <div class="container">
                 <div class="header-title">
-                <h1 class="header-logo"><a href="#gnav"><img src="img/test.png" alt="圖片失效"></a></h1>
+                <h1 class="header-logo"><a href="#gnav"><img src="img/test.png" id="images1"></a></h1>
                 <p class="headerMsg">作品集</p>
                 </div>
             </div>
