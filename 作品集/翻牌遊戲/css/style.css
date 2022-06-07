@@ -3,4 +3,41 @@
   padding: 0;
 }
 
+section {
+  width: 1000px;
+  height: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  flex: 1 1 200px;
+}
+
+.card {
+  margin: 10px 30px;
+  transition: transform 0.5s;
+}
+
+.frontSide {
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  z-index: -1;
+}
+
+.backSide {
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  z-index: 1;
+  transition: transform 0.5s;
+}
+
+.h100w100pR {
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.borderR20 {
+  border-radius: 20%;
+}
+
 /*# sourceMappingURL=style.css.map */
