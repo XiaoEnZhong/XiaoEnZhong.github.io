@@ -31,7 +31,7 @@ function gameStart() {
         return
     }
 
-    secondPick = this
+    secondPick = this;
 
     checkForMatch();
 
@@ -60,7 +60,7 @@ function checkForMatch() {
 
 
 
-        restart()
+        restart();
 
     } else {
 
@@ -72,7 +72,7 @@ function checkForMatch() {
             firstPick.classList.remove("pick");
             secondPick.classList.remove("pick");
 
-            restart()
+            restart();
 
         }, 1000);
 
