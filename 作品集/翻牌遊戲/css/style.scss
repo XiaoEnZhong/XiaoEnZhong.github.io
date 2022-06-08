@@ -1,33 +1,67 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+h1 {
+    padding: 1%;
+    width: 70vh;
+    color: red;
+    text-align: center;
+    background-color: #313131;
+}
+
 section {
-    width:  1000px;
-    height: 1000px;
+    width: 80vh;
+    height: 500px;
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     margin: auto;
-    flex: 1 1 200px;
+    background-color: aqua;
 }
+
+@media all and (max-width:680px) {
+    section {
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        padding-right: 10%;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card {
     margin: 10px 30px;
     transition: transform .5s;
+    cursor: pointer;
+    transform-style: preserve-3d;
 }
+
 .frontSide {
-    backface-visibility:hidden;
-    transform:rotateY(-180deg);
+    backface-visibility: hidden;
+    transform: rotateY(-180deg);
     z-index: -1;
 }
+
 .backSide {
-    backface-visibility:hidden;
-    transform:rotateY(0deg);
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
     z-index: 1;
     transition: transform .5s;
 }
 
 
-.h100w100pR{
+.h100w100pR {
     height: 100px;
     width: 100px;
     position: relative;
@@ -35,4 +69,9 @@ section {
 
 .borderR20 {
     border-radius: 20%;
+}
+
+
+.pick {
+    transform: rotateY(180deg);
 }
