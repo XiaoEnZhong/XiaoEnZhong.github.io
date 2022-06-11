@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <template>
+        <div>
+          <v-alert
+            shaped
+            dark
+            color="info"
+          >
+            I'm a shaped alert with a border-radius at top-left, bottom-right
+          </v-alert>
+          <v-alert
+            shaped
+            outlined
+            type="success"
+          >
+            I'm a shaped alert with a outline option
+          </v-alert>
+          <v-alert
+            shaped
+            dense
+            dark
+            type="warning"
+          >
+            I'm a shaped alert with a dense option option
+          </v-alert>
+          <v-alert
+            shaped
+            prominent
+            type="error"
+          >
+            I'm a shaped alert with a dense prominent option that Praesent blandit laoreet nibh. Praesent nonummy mi in odio. Phasellus tempus. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Duis leo.
+          </v-alert>
+        </div>
+      </template>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+    })
+  </script>
+</body>
+</html>

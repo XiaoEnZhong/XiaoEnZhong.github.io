@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <v-app id="inspire">
+            <div>
+                <v-alert v-model="alert" border="left" close-text="Close Alert" color="deep-purple accent-4" dark
+                    dismissible>
+                    Aenean imperdiet. Quisque id odio. Cras dapibus. Pellentesque ut neque. Cras dapibus.
+
+                    Vivamus consectetuer hendrerit lacus. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam
+                    libero, non adipiscing dolor urna a orci. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam
+                    libero, non adipiscing dolor urna a orci. Curabitur blandit mollis lacus. Curabitur ligula sapien,
+                    tincidunt non, euismod vitae, posuere imperdiet, leo.
+                </v-alert>
+                <div class="text-center">
+                    <v-btn v-if="!alert" color="deep-purple accent-4" dark @click="alert = true">
+                        Reset
+                    </v-btn>
+                </div>
+            </div>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    alert: true,
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

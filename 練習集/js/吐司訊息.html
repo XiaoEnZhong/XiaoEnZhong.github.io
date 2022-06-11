@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/toast.css">
+</head>
+
+<body>
+    <section class="panel-content">
+        <div class="panel__circle"></div>
+        <div class="panel__circle__r"></div>
+        <div class="panel-title-cnt">
+            <h1 class="panel-title">
+                <big>TOAST</big> 吐司訊息
+            </h1>
+        </div>
+        <ul>
+            <li>
+                <div class="toast toast--success fadeIn">
+                    <i class="fi fi-rr-time-check"></i>
+                    <font>成功訊息</font>
+                </div>
+                <button type="button" class="button button--success" onclick="Toast('資料已經送出！', 'success',1000)"><i
+                        class="fi fi-rr-cursor-finger"></i>
+                    成功訊息</button>
+            </li>
+            <li>
+                <div class="toast toast--error fadeIn">
+                    <i class="fi fi-rr-cross-circle"></i>
+                    <font>錯誤訊息</font>
+                </div>
+                <button type="button" class="button button--error" onclick="Toast('格式錯誤！', 'error',1000)"><i
+                        class="fi fi-rr-cursor-finger"></i>
+                    錯誤訊息</button>
+            </li>
+            <li>
+                <div class="toast toast--info fadeIn">
+                    <i class="fi fi-rr-info"></i>
+                    <font>資訊提示</font>
+                </div>
+                <button type="button" class="button button--info" onclick="Toast('資訊提示！', 'info',1000)"><i
+                        class="fi fi-rr-cursor-finger"></i>
+                    資訊提示</button>
+            </li>
+            <li>
+                <div class="toast toast--warning fadeIn">
+                    <i class="fi fi-rr-shield-exclamation"></i>
+                    <font>警告訊息</font>
+                </div>
+                <button type="button" class="button button--warning"
+                    onclick="Toast('警告訊息！', 'warning',1000)">警告訊息</button>
+            </li>
+            <li>
+
+                <div class="toast toast--help fadeIn">
+                    <i class="fi fi-rr-interrogation"></i>
+                    <font>問題提醒</font>
+                </div>
+                <button type="button" class="button button--primary" onclick="Toast('問題提醒！', 'help',1000)"><i
+                        class="fi fi-rr-cursor-finger"></i>
+                    問題提醒</button>
+            </li>
+            <li>
+                <div class="toast toast--default fadeIn">
+                    <div class="spinner"></div>
+                    <font>載入中</font>
+                </div>
+                <button type="button" class="button button--dark" onclick="Toast('載入中 ...','default',1000)"><i
+                        class="fi fi-rr-cursor-finger"></i>
+                    載入中</button>
+            </li>
+        </ul>
+
+    </section>
+
+    <script>
+        function Toast(txt, type, duration) {
+            var duration = isNaN(duration) ? 3000 : duration;
+            var toast = document.createElement("div");
+            toast.id = "toast";
+
+            var toast_id = document.getElementById("toast");
+            if (toast_id) {
+                toast_id.remove();
+            }
+
+            document.body.appendChild(toast);
+
+            switch (type) {
+                case "success":
+                    toast.className = "toast toast--success float-toast fadeIn";
+                    toast.innerHTML =
+                        '<i class="fi fi-rr-time-check" aria-hidden="true"></i>' +
+                        "<font>" +
+                        txt +
+                        "</font>";
+                    break;
+                case "error":
+                    toast.className = "toast toast--error float-toast fadeIn";
+                    toast.innerHTML =
+                        '<i class="fi fi-rr-cross-circle" aria-hidden="true"></i> <font>' +
+                        txt +
+                        "</font>";
+                    break;
+                case "info":
+                    toast.className = "toast toast--info float-toast fadeIn";
+                    toast.innerHTML =
+                        '<i class="fi fi-rr-info" aria-hidden="true"></i> <font>' + txt + "</font>";
+                    break;
+                case "warning":
+                    toast.className = "toast toast--warning float-toast fadeIn";
+                    toast.innerHTML =
+                        '<i class="fi fi-rr-shield-exclamation" aria-hidden="true"></i> <font>' +
+                        txt +
+                        "</font>";
+                    break;
+                case "help":
+                    toast.className = "toast toast--help float-toast fadeIn";
+                    toast.innerHTML =
+                        '<i class="fi fi-rr-interrogation" aria-hidden="true"></i> <font>' +
+                        txt +
+                        "</font>";
+                    break;
+                case "default":
+                    toast.className = "toast toast--default float-toast fadeIn";
+                    toast.innerHTML = '<div class="spinner"></div> <font>' + txt + "</font>";
+                    break;
+            }
+
+            setTimeout(function () {
+                toast.classList.remove("fadeIn");
+                toast.classList.add("fadeOut", "t-invisible");
+            }, duration);
+        }
+    </script>
+</body>
+
+</html>
