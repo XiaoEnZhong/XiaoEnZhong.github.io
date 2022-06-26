@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!--vue-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <!--bs-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <!---->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!--aos-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <header id="header" class="header">
+        <span>
+            靜態SPA
+        </span>
+    </header>
+    <div class="sticky">
+        <nav class="asideMenu">
+            <button class="btn"><i class="fas fa-chevron-right fa-2x"></i></button>
+            <div class="title">快速導覽</div>
+            <div class="list">
+                <div class="optionTitle">
+                    <a href="#product">商品瀏覽</a>
+                    <a href="#evaluation">購物車</a>
+                    <a href="#process">配達流程</a>
+                    <a href="#now">立即下單</a>
+                    </ul>
+                </div>
+        </nav>
+    </div>
+    <!--id=app-->
+    <div id="app">
+        <v-app id="inspire">
+            <v-card flat tile>
+                <v-window v-model="onboarding" reverse>
+                    <v-window-item v-for="n in length" :key="`card-${n}`">
+                        <v-card color="grey" height="100%">
+                            <v-row class="fill-height" align="center" justify="center">
+                                <h1 style="font-size: 5rem;" class="white--text">
+
+                                    <img :src="n.img" alt="載入中......" style="width: 100%;height: 300px">
+
+                                </h1>
+                            </v-row>
+                        </v-card>
+                    </v-window-item>
+                </v-window>
+
+                <v-card-actions class="justify-space-between">
+                    <v-btn text @click="prev">
+                        <v-icon>mdi-chevron-left</v-icon>
+                    </v-btn>
+                    <v-item-group v-model="onboarding" class="text-center" mandatory>
+                        <v-item v-for="n in length" :key="`btn-${n}`" v-slot="{ active, toggle }">
+                            <v-btn :input-value="active" icon @click="toggle">
+                                <v-icon>mdi-record</v-icon>
+                            </v-btn>
+                        </v-item>
+                    </v-item-group>
+                    <v-btn text @click="next">
+                        <v-icon>mdi-chevron-right</v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-app>
+    </div>
+
+
+
+
+
+
+    <!---->
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+        <div class="font"></div>
+    </div>
+    <h1>商品瀏覽</h1>
+    <!--商品瀏覽-->
+    <main id="product" class="">
+        <div class="row">
+
+            <div class="col-12 mid">
+                <p class="">搜尋</p>
+                <p>
+
+                    <input class="input" type="text" placeholder="請輸入要搜尋的商品名稱" v-model="searchKeyword">
+                </p>
+            </div>
+            <li v-for="(item,index) in filterSearch" v-bind:key="index" class="col-lg-3 col-md-4 col-sm-6">
+                <v-card style="padding: 10px;" class="">
+                    <div class="end" v-bind:class="">
+
+                        <i class="bi bi-suit-heart" v-show="item.int" v-on:click="heart(index)">
+                            <div>
+
+                            </div>
+                        </i>
+
+                        <i class="bi bi-suit-heart-fill" v-if="item.int==false" v-on:click="heart(index)">
+                        </i>
+                    </div>
+                    <div class="myImg">
+                        <img :src="item.img" alt="載入中......" style="width: 100%;">
+                    </div>
+                    <div class="">
+                        <br>
+                        <base-subheading>商品名稱:{{item.name}}</base-subheading>
+                        <h5>價格:{{item.price}}</h5>
+                        <div style="display: flex;justify-content: flex-end;">
+                            <button v-on:click="love(index)"><i class="bi bi-cart-plus-fill"></i>加入購物車</button>
+                        </div>
+
+                    </div>
+                </v-card>
+            </li>
+        </div>
+        <!--我的最愛-->
+        <section id="evaluation">
+            <h1>購物車</h1>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <tr class="align-bottom">
+                        <td>商品名稱</td>
+                        <td>價格</td>
+                        <td>數量</td>
+                        <td style="width: 20%;">圖片</td>
+                        <td>總價</td>
+                        <td>動作</td>
+                    </tr>
+                    <tr v-for="(item,index) in itemslist" v-show="index>0" class="align-bottom">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.count}}</td>
+                        <td><img :src="item.img" alt="載入中......" style="width: 50%;height: 100%;"></td>
+                        <td>{{item.count*item.price}}</td>
+                        <td><button class="btn btn-danger" v-on:click="bye(index)">刪除</button></td>
+                    </tr>
+                </table>
+                <div v-if="itemslist.length>1">
+                    總價格
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!--配達流程-->
+    <section id="process">
+        <h1>配達流程</h1>
+        <div class="mid" style="justify-content: space-between;">
+            <span style="width:20%;text-align: center;">
+                <img src="./imgs/選購商品.png" alt="" style="width: 100%;" class="bb">
+                <h4>STEP.1</h4>
+                <p>選購商品</p>
+            </span>
+            <span style="width:20%;text-align: center;">
+                <img src="./imgs/填寫預定資料.png" alt="" style="width: 100%;" class="bb">
+                <h4>STEP.2</h4>
+                <p>填寫預定資料</p>
+            </span>
+            <span style="width:20%;text-align: center;">
+                <img src="./imgs/預定成功.png" alt="" style="width: 100%;" class="bb">
+
+                <h4>STEP.3</h4>
+                <p>預定成功</p>
+            </span>
+            <span style="width:20%;text-align: center;">
+                <img src="./imgs/Email 付款資訊.png" alt="" style="width: 100%;" class="bb">
+
+                <h4>STEP.4</h4>
+                <p>Email 付款資訊</p>
+            </span>
+        </div>
+
+    </section>
+    <!--立即下單-->
+    <section id="now">
+
+        <form action="" class="form">
+            <div>
+                <h1>填寫預定資料</h1>
+                <div class="">
+                    <label for="customerName">姓名</label>
+                    <div class="mid">
+                        <input type="text" class="" id="customerName" placeholder="請輸入姓名">
+                    </div>
+                </div>
+
+                <div class="">
+                    <label for="customerEmail">信箱</label>
+                    <div class="mid">
+                        <input type="text" class="" id="customerEmail" placeholder="請輸入信箱">
+                    </div>
+                </div>
+
+                <div class="">
+                    <label for="customerPhone">聯絡電話</label>
+                    <div class="mid">
+                        <input type="text" class="" id="customerPhone" placeholder="請輸入聯絡電話">
+                    </div>
+                </div>
+
+                <div class="">
+                    <label for="customerAddress">寄送地址</label>
+                    <div class="mid">
+                        <input type="text" class="" id="customerAddress" placeholder="請輸入寄送地址">
+                    </div>
+                </div>
+
+                <div class="">
+                    <label for="customerAddress">交易方式</label>
+                    <div class="mid">
+
+                        <select name="交易方式" id="">
+                            <option value="">信用卡</option>
+                            <option value="">超商付款</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="./js/data.js"></script>
+    <script>
+        let cc = new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                length: [{
+                        count: 1,
+                        int: 1,
+                        img: "./imgs/圓(二維).png",
+                        name: "圓(二維)",
+                        price: 2
+                    },
+                    {
+                        count: 1,
+                        int: 2,
+                        img: "./imgs/矩形(二維).png",
+                        name: "矩形(二維)",
+                        price: 2
+                    }
+                ],
+                onboarding: 0,
+            }),
+
+            methods: {
+                next() {
+                    this.onboarding = this.onboarding + 1 === this.length ?
+                        0 :
+                        this.onboarding + 1
+                },
+                prev() {
+                    this.onboarding = this.onboarding - 1 < 0 ?
+                        this.length - 1 :
+                        this.onboarding - 1
+                },
+            },
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(".asideMenu").toggleClass("active");
+                $(".fa-chevron-right").toggleClass("rotate");
+            });
+        });
+    </script>
+
+    <script>
+        window.onscroll = function () {
+            myFunction()
+        };
+
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+            if (scrolled != 100) {
+                // document.getElementById("foot").style.display="none";
+                document.querySelector(".font").textContent = "尚未滾動到底部......";
+            }
+
+            if (scrolled == 100) {
+                //alert('到底了');
+                //document.getElementById("foot").style.display = "block";
+                document.querySelector(".font").textContent = "已抵達底部";
+            }
+
+        }
+
+        function myAlert() {
+
+
+        }
+    </script>
+</body>
+
+</html>

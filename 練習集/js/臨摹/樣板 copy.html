@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <template>
+        <div style="text-align: left">
+            <label>SearchBy:</label><input v-model="searchTerm" />
+        </div>
+        <table-lite :is-static-mode="true" :is-loading="table.isLoading" :columns="table.columns" :rows="table.rows"
+            :total="table.totalRecordCount" :sortable="table.sortable"></table-lite>
+    </template>
+
+    <div id="my-app">
+        <my-component></my-component>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#my-app',
+            components: {
+                'my-component': httpVueLoader('./thisVue.vue')
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <!--
+    <script>
+        import {
+            defineComponent,
+            reactive,
+            ref,
+            computed,
+            watch
+        } from "vue";
+        import TableLite from "../components/TableLite.vue";
+        export default defineComponent({
+            name: "App",
+            components: {
+                TableLite
+            },
+            setup() {
+                const searchTerm = ref(""); // Search text
+                // Fake data
+                const data = reactive({
+                    rows: [],
+                });
+                /**
+                 * Get server data request
+                 */
+                const myRequest = async (keyword) => {
+                    const fakeData = [];
+                    for (let i = 0; i < 126; i++) {
+                        fakeData.push({
+                            id: i,
+                            name: "TEST" + i,
+                            email: "test" + i + "@example.com",
+                        });
+                    }
+                    return await new Promise((resolve, reject) => {
+                        try {
+                            table.isLoading = true;
+                            // Remove setTimeout() and change to your Axios request or AJAX request on here.
+                            setTimeout(() => {
+                                table.isLoading = false;
+                                let newData = fakeData.filter(
+                                    (x) =>
+                                    x.email.toLowerCase().includes(keyword
+                                        .toLowerCase()) ||
+                                    x.name.toLowerCase().includes(keyword
+                                        .toLowerCase())
+                                );
+                                resolve(newData);
+                            }, 2000);
+                        } catch (error) {
+                            console.log("Fetch error", error);
+                            reject();
+                        }
+                    });
+                };
+                // Table config
+                const table = reactive({
+                    isLoading: false,
+                    columns: [{
+                            label: "ID",
+                            field: "id",
+                            width: "3%",
+                            sortable: true,
+                            isKey: true,
+                        },
+                        {
+                            label: "Name",
+                            field: "name",
+                            width: "10%",
+                            sortable: true,
+                        },
+                        {
+                            label: "Email",
+                            field: "email",
+                            width: "15%",
+                            sortable: true,
+                        },
+                    ],
+                    rows: computed(() => {
+                        return data.rows;
+                    }),
+                    totalRecordCount: computed(() => {
+                        return table.rows.length;
+                    }),
+                    sortable: {
+                        order: "id",
+                        sort: "asc",
+                    },
+                });
+                /**
+                 * Use vue.js watch to watch your state's change
+                 */
+                watch(
+                    () => searchTerm.value,
+                    (val) => {
+                        myRequest(val).then((newData) => {
+                            data.rows = newData;
+                        });
+                    }
+                );
+                // Get data on first rendering
+                myRequest("").then((newData) => {
+                    data.rows = newData;
+                });
+                return {
+                    searchTerm,
+                    table,
+                };
+            },
+        });
+    </script>
+    -->
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+
+  <!--
+    和wbpack生命週期一樣，都是在從生到死的特定階段調用的方法
+    PS: 生命週期鉤子 = 生命週期函數 = 生命週期事件
+
+    Vue生命週期方法分類
+
+    創建時
+
+          beforeCreate:
+          created:
+          beforeMount:
+          mounted:
+
+    運行期間
+          beforeUpdate:
+          updated:
+    銷毀
+          beforeDestory:
+          destoryed:
+  -->
+
+
+
+
+
+
+  <!--這裡是MVVM中的View-->
+
+  <div class="" id="app">
+    <p class="a">{{msg}}</p>
+
+
+
+    <button v-on:click="change">切換</button>
+    <!--通過v-if來切換，會直接刪除和重新創建-->
+    <one v-if="isShow"></one>
+  </div>
+
+
+<!--vue實例對象可以看作是一個大的組件，我們自定義的組件可以看作是一個小的組件
+    那麼大的組件中可以使用的屬性和方法，在小的組件中也可以使用
+    例如:在Vue實例中我們可以添加data,methods,那麼在自定義的組件中也可以添加data,methods
+    所以Vue實例中可以使用生命週期方法，組件中也可以使用生命週期方法  
+-->
+  <template class="" id="one">
+    <div>
+      <p>我是組件</p>
+    </div>
+  </template>
+
+  <div id="my-app">
+    <my-component></my-component>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+
+    Vue.component("one",{
+      template:'#one',
+      data:function(){
+        return{
+          msg:"48763"
+        }
+      },
+      methods:{
+        say(){
+          console.log("小組件");
+        }
+      },
+      beforeDestroy:function(){
+        /*
+        在調用beforeDestroy的時候，表示當前組件即將被銷毀了
+        注意點:只要組件不銷毀，那麼beforeDestroy就不會調用
+              beforeDestroy函數是我們最後能夠訪問到組件數據和方法的函數
+        */
+        console.log("beforeDestroy");
+        console.log(this.msg);
+        console.log(this.say);
+      },
+      destoryed:function(){
+        /*
+        在調用beforeDestroy的時候，表示當前組件已經被銷毀了
+        注意點:只有組件被銷毀，才會調用destoryed
+              不要在這個生命週期方法中再去操作組件中數據和方法
+        */
+        console.log("destoryed");
+      }
+    });
+
+
+
+    let vue = new Vue({
+      //創建期
+      beforeCreate: function () {
+        /*在調用beforeCreate的時候，僅僅表示vue實例剛剛被創建出來
+          此時此刻還沒有初始化好Vue實例中的數據和方法，所以此時此刻還不能訪問Vue實例中保存的數據和方法
+          因此都是undefined
+        */
+        // console.log(this.msg);
+        // console.log(this.say);
+
+      },
+
+      created: function () {
+        /*
+        在調用created的時候，是我們最早能夠訪問Vue實例中保存其數據和方法的地方
+        因此能夠看到資料與方法
+        */
+
+
+        //  console.log(this.msg);
+        //  console.log(this.say);
+
+      },
+      beforeMount: function () {
+
+        /*
+        在調用beforeMount的時候，表示Vue已經編譯好了最終模板，但是還沒有將最終的模板渲染到介面上
+        因此為{{msg}}
+        */
+        // console.log(document.querySelector('p').innerHTML);
+        // console.log(document.querySelector('p').innerText);
+      },
+      mounted: function () {
+
+        /*
+        在調用mounted的時候，表示Vue已經完成好了模板的渲染，已經可以拿到介面上渲染之後的內容
+        "資料已建立"
+        */
+        // console.log(document.querySelector('p').innerHTML);
+        // console.log(document.querySelector('p').innerText);
+      },
+
+
+      //運行期間
+
+      beforeUpdate: function () {
+        /*
+        在調用beforeUpdate的時候，表示Vue實例中保存的數據被修改了
+        注意點:只有保存的數據被修改了才會調用beforeUpdate,否則不會調用
+        注意點:在調用beforeUpdate的時候，數據已經更新了，但是介面還沒有更新，因此抓取到的還是修改前的資料。
+        */
+        // console.log(document.querySelector('p').innerHTML);
+        // console.log(document.querySelector('p').innerText);
+        //
+      },
+      updated:function () {
+        /*
+        在調用updated的時候，表示Vue實例中保存的數據被修改了
+        並且介面也同步了修改的資料，因此是最新的數據。
+        */
+        console.log(document.querySelector('p').innerHTML);
+        console.log(document.querySelector('p').innerText);
+      },
+
+
+
+
+
+      el: '#app',
+      //用於監聽數據變化的
+      watch: {
+
+      },
+      //這裡是MVVM中的Model
+      data() {
+        return {
+          msg: "資料已建立",
+          isShow:true,
+        }
+      },
+      //專門用於儲存監聽事件回調函數
+      methods: {
+        say: function () {
+          console.log("say");
+        },
+        change(){
+          this.isShow = !this.isShow;
+        }
+      },
+      //vuetify: new Vuetify(),
+    });
+
+
+    new Vue({
+	  el: '#my-app',
+	  components: {
+	    'my-component': httpVueLoader('./index.vue')
+	  }
+		});
+  </script>
+</body>
+
+</html>
