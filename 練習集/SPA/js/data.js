@@ -1,8 +1,4 @@
 
-
-
-
-
 let dd = new Vue({
     el:'#product',
     data() {
@@ -112,11 +108,85 @@ let dd = new Vue({
                 console.log("125");
                 heart.x ='t';
             }*/
+        },
+        
+        add:function(index){
+            console.log(index);
+            return this.itemslist[index].count=this.itemslist[index].count+1;
+        },
+        re:function(index){
+            return this.itemslist[index].count=this.itemslist[index].count-1;
         }
     },
     computed:{
         filterSearch(){
             return this.items.filter(searchResult => searchResult.name.match(this.searchKeyword));
         }
+    }
+})
+
+
+let now = new Vue({
+    el:'#now',
+    data() {
+        return {
+            customer:{
+                name:'',
+                email:'',
+                phone:'',
+                address:''
+            },
+            text:{
+                name:'',
+                email:'',
+                phone:'',
+                address:''
+            }
+        }
+    },
+    methods:{
+        
+        blurname:function(){
+            let t = this;
+            if(t.customer.name==''){
+                t.text.name='請輸入姓名';
+            }else{
+                t.text.name='';
+            }
+        },
+        bluremail:function(){
+            let t = this;
+            let a =t.customer.email;
+            let ok = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            if(a==''){
+                t.text.email='請輸入信箱';
+            }else if(a.search(ok)!= -1){
+                t.text.email='';
+            }else{
+                t.text.email='信箱格式錯誤!';
+            }
+            
+        },
+        blurphone:function(){
+            let t = this;
+            let ok = /^[0-9]{10}$/g;
+            let a=t.customer.phone;
+            if(a==''){
+                t.text.phone='請輸入手機';
+            }else if (a.search(ok)!= -1){
+                t.text.phone='';
+                }else{
+                    t.text.phone='手機格是錯誤!';
+                }
+            },
+        
+        bluraddress:function(){
+            let t = this;
+            if(t.customer.address==''){
+                t.text.address='請輸入地址';
+            }else{
+                t.text.address='';
+            }
+        },
     }
 })

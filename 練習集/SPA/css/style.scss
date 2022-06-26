@@ -6,7 +6,7 @@
 
 .progress-container {
 
-  z-index: 1;
+  z-index: 998;
   top: 0;
   position: -webkit-sticky;
   position: sticky;
@@ -16,20 +16,24 @@
 }
 
 .progress-bar {
+  z-index: 998;
   height: 40px;
   background: #aaa204;
   width: 0%;
 }
 
 .font {
+  z-index: 998;
   position: relative;
   font-size: 20px;
   top: -40px;
 }
 
 body {
-  height: 2000px;
+  //height: 2000px;
 }
+
+
 
 .header {
   display: flex;
@@ -76,7 +80,9 @@ p {
 }
 
 .form {
-  border: 1px solid red;
+  border: 1px solid blue;
+  background-color: yellow;
+  box-shadow: 3px 3px 5px aqua;
 }
 
 li {
@@ -188,4 +194,50 @@ button:focus {
   outline: none;
 
   border: none;
+}
+
+/*top*/
+.top{
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  right: 10px;
+  bottom: 70px;
+}
+.top a {
+  display: block;
+  width: 45px;
+  height: 45px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+}
+.top a:hover {
+  background: rgba(255,255,255,0.8);
+  color: #59220d;
+}
+.top a::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-top: 1px solid #59220d;
+  border-right: 1px solid #59220d;
+  transform: rotate(-45deg);
+}
+
+//
+a:hover {
+  background: #ecdfc2;
+}
+
+.red {
+  color: red;
+  font-size: 20px;
+  padding-right: 2rem;
 }

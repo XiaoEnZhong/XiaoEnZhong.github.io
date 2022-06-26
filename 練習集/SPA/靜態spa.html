@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>單頁應用SPA</title>
 
 
     <!--vue-->
@@ -37,8 +37,12 @@
 <body>
     <header id="header" class="header">
         <span>
-            靜態SPA
+            單頁應用SPA
         </span>
+        <!--
+
+            <v-otp-input length="9" type="number"></v-otp-input>
+        -->
     </header>
     <div class="sticky">
         <nav class="asideMenu">
@@ -108,10 +112,10 @@
         <div class="row">
 
             <div class="col-12 mid">
-                <p class="">搜尋</p>
+                <p class="">搜尋商品名稱</p>
                 <p>
 
-                    <input class="input" type="text" placeholder="請輸入要搜尋的商品名稱" v-model="searchKeyword">
+                    <input class="input-group-text" type="text" placeholder="請輸入要搜尋的商品名稱" v-model="searchKeyword">
                 </p>
             </div>
             <li v-for="(item,index) in filterSearch" v-bind:key="index" class="col-lg-3 col-md-4 col-sm-6">
@@ -149,7 +153,7 @@
                 <table class="table table-dark table-striped">
                     <tr class="align-bottom">
                         <td>商品名稱</td>
-                        <td>價格</td>
+                        <td>單價</td>
                         <td>數量</td>
                         <td style="width: 20%;">圖片</td>
                         <td>總價</td>
@@ -158,7 +162,7 @@
                     <tr v-for="(item,index) in itemslist" v-show="index>0" class="align-bottom">
                         <td>{{item.name}}</td>
                         <td>{{item.price}}</td>
-                        <td>{{item.count}}</td>
+                        <td><button v-on:click="re(index)">-</button>{{item.count}}<button v-on:click="add(index)">+</button></td>
                         <td><img :src="item.img" alt="載入中......" style="width: 50%;height: 100%;"></td>
                         <td>{{item.count*item.price}}</td>
                         <td><button class="btn btn-danger" v-on:click="bye(index)">刪除</button></td>
@@ -178,6 +182,7 @@
         <div class="mid" style="justify-content: space-between;">
             <span style="width:20%;text-align: center;">
                 <img src="./imgs/選購商品.png" alt="" style="width: 100%;" class="bb">
+                
                 <h4>STEP.1</h4>
                 <p>選購商品</p>
             </span>
@@ -203,35 +208,39 @@
     </section>
     <!--立即下單-->
     <section id="now">
-
         <form action="" class="form">
             <div>
                 <h1>填寫預定資料</h1>
                 <div class="">
                     <label for="customerName">姓名</label>
                     <div class="mid">
-                        <input type="text" class="" id="customerName" placeholder="請輸入姓名">
+                        <input type="text" class="input-group-text" id="customerName" placeholder="請輸入姓名"  v-model="customer.name" v-on:blur="blurname()">
+                        <div class="red">{{text.name}}</div>
                     </div>
+                    
                 </div>
 
                 <div class="">
                     <label for="customerEmail">信箱</label>
                     <div class="mid">
-                        <input type="text" class="" id="customerEmail" placeholder="請輸入信箱">
+                        <input type="text" class="input-group-text" id="customerEmail" placeholder="請輸入信箱" v-model="customer.email" v-on:blur="bluremail()">
+                        <div class="red">{{text.email}}</div>
                     </div>
                 </div>
 
                 <div class="">
-                    <label for="customerPhone">聯絡電話</label>
+                    <label for="customerPhone">聯絡手機</label>
                     <div class="mid">
-                        <input type="text" class="" id="customerPhone" placeholder="請輸入聯絡電話">
+                        <input type="text" class="input-group-text" id="customerPhone" placeholder="請輸入聯絡手機" v-model="customer.phone" v-on:blur="blurphone()">
+                        <div class="red">{{text.phone}}</div>
                     </div>
                 </div>
 
                 <div class="">
                     <label for="customerAddress">寄送地址</label>
                     <div class="mid">
-                        <input type="text" class="" id="customerAddress" placeholder="請輸入寄送地址">
+                        <input type="text" class="input-group-text" id="customerAddress" placeholder="請輸入寄送地址" v-model="customer.address" v-on:blur="bluraddress()">
+                        <div class="red">{{text.address}}</div>
                     </div>
                 </div>
 
@@ -239,7 +248,7 @@
                     <label for="customerAddress">交易方式</label>
                     <div class="mid">
 
-                        <select name="交易方式" id="">
+                        <select name="交易方式" id="" class="form-select" >
                             <option value="">信用卡</option>
                             <option value="">超商付款</option>
                         </select>
@@ -250,10 +259,20 @@
     </section>
 
 
-    <footer></footer>
+    <footer>
+        <p class="top"><a href="#header">TOP</a></p>
+    </footer>
+
+    <div style="height: 10px;"></div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="./js/data.js"></script>
+    <script>
+        new Vue({
+            el: '#header',
+            vuetify: new Vuetify(),
+        })
+    </script>
     <script>
         let cc = new Vue({
             el: '#app',
@@ -262,14 +281,14 @@
                 length: [{
                         count: 1,
                         int: 1,
-                        img: "./imgs/圓(二維).png",
+                        img: "./imgs/表情A.png",
                         name: "圓(二維)",
                         price: 2
                     },
                     {
                         count: 1,
                         int: 2,
-                        img: "./imgs/矩形(二維).png",
+                        img: "./imgs/表情B.png",
                         name: "矩形(二維)",
                         price: 2
                     }
